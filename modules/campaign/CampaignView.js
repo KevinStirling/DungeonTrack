@@ -61,40 +61,43 @@ const Campaign = ({ route, navigation }) => {
                 <Appbar.BackAction onPress={_goBack} />
                 <Appbar.Content title={cName} />
             </Appbar.Header>
-
-            <ScrollView>
-            <View style={styles.headerContainer}>
-                <View>
-                    <Image style={styles.headerPic} source={{ uri: 'https://picsum.photos/650' }} />
-                </View>
-            </View>
-            <Title style={styles.sectionTitle}>The Party</Title>
-
             <FlatList
+                ListHeaderComponent={
+                    <>
+                        <View style={styles.headerContainer}>
+                            <View>
+                                <Image style={styles.headerPic} source={{ uri: 'https://picsum.photos/650' }} />
+                            </View>
+                        </View>
+                        <Title style={styles.sectionTitle}>The Party</Title>
+                    </>
+                }
                 data={Heros}
                 renderItem={renderItem}
                 keyExtractor={item => item.cId}
                 style={{ flex: 1 }}
-                scrollEnabled='false'
+                scrollEnabled='true'
+                ListFooterComponent={
+                    <>
+                        <Title style={styles.sectionTitle}>Party Stats</Title>
+                        <View style={styles.cardContainer}>
+
+                            <Card style={{ flex: 1, width: '40%', height: 100 }}>
+                                <Card.Content>
+                                    <Title>Damage Delt</Title>
+                                    <Paragraph>Card content</Paragraph>
+                                </Card.Content>
+                            </Card>
+                            <Card style={{ flex: 1, width: '40%', height: 100 }}>
+                                <Card.Content>
+                                    <Title>Damage Taken</Title>
+                                    <Paragraph>Card content</Paragraph>
+                                </Card.Content>
+                            </Card>
+                        </View>
+                    </>
+                }
             />
-            <Title style={styles.sectionTitle}>Party Stats</Title>
-            <View style={styles.cardContainer}>
-
-                <Card style={{ flex: 1, width: '40%', height: 100 }}>
-                    <Card.Content>
-                        <Title>Damage Delt</Title>
-                        <Paragraph>Card content</Paragraph>
-                    </Card.Content>
-                </Card>
-                <Card style={{ flex: 1, width: '40%', height: 100 }}>
-                    <Card.Content>
-                        <Title>Damage Taken</Title>
-                        <Paragraph>Card content</Paragraph>
-                    </Card.Content>
-                </Card>
-            </View>
-            </ScrollView>
-
         </View>
     )
 }
